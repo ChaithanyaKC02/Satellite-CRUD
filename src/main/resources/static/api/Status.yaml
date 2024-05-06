@@ -1,0 +1,9 @@
+Status:
+  type: object
+  properties:
+    code:
+      type: integer
+    message:
+      type: string
+    type:
+      type: string

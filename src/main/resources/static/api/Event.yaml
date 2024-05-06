@@ -1,0 +1,12 @@
+Event:
+  type: object
+  properties:
+    satelliteName:
+      type: string
+    priority:
+      type: string
+    description:
+      type: string
+    date:
+      type: string
+      format: date-time

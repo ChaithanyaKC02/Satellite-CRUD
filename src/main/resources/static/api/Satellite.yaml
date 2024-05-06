@@ -1,0 +1,114 @@
+swagger: "2.0"
+info:
+  title: Satellite events
+  version: 1.0.0
+
+host: localhost
+basePath: /restfulservice
+schemes:
+  - http
+  - https
+
+consumes:
+  - application/json
+
+produces:
+  - application/json
+
+paths:
+  /events:
+    post:
+      tags: ["Save events information"]
+      summary: retuns events infomation.
+      operationId: post
+      schemes:
+        - http
+      parameters:
+        - $ref: '#/parameters/Events'
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: 'Status.yaml#/Status'
+        default:
+          description: Error
+    get:
+      tags: [ "Get events information" ]
+      summary: returns events information.
+      operationId: getAllEventInformation
+      schemes:
+        - http
+      parameters:
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: array
+            items:
+              $ref: 'Event.yaml#/Event'
+        default:
+          description: Error
+    delete:
+      tags: [ "Delete events information" ]
+      summary: Deletes the events information.
+      operationId: delete
+      schemes:
+        - http
+      parameters:
+        - $ref: '#/parameters/eventId'
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: 'Status.yaml#/Status'
+        default:
+          description: Error
+  /events/{satellite_id}:
+    get:
+      tags: [ "Get specific events information" ]
+      summary: returns events information.
+      operationId: getEventInformation
+      schemes:
+        - http
+      parameters:
+        - $ref: '#/parameters/satellite_id'
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: array
+            items:
+              $ref: 'Event.yaml#/Event'
+        default:
+          description: Error
+
+parameters:
+  Events:
+    in: body
+    name: Events
+    required: true
+    schema:
+      $ref: 'Event.yaml#/Event'
+  Event:
+    in: body
+    name: Event
+    required: true
+    schema:
+      type: array
+      items:
+        $ref: 'Event.yaml#/Event'
+  Status:
+    in: body
+    name: Status
+    required: true
+    schema:
+      $ref: 'Status.yaml#/Status'
+  eventId:
+    in: query
+    name: eventId
+    type: string
+  satellite_id:
+    in: path
+    name: satellite_id
+    type: string
+    required: true

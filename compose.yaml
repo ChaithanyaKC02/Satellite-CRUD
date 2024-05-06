@@ -1,0 +1,11 @@
+services:
+    app:
+      image: 'spring-boot-docker.war'
+      build:
+          context: .
+      container_name: satellite_events
+      ports:
+        - "1781:8084"
+      extra_hosts:
+        - "host.docker.internal:host-gateway"
+
